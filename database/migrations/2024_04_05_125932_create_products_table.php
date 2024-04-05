@@ -19,19 +19,19 @@ return new class extends Migration
             $table->string('currency_symbol');
             $table->integer('mrp');
             $table->boolean('is_wholesale');
-            $table->tinyInteger('rating');
-            $table->tinyInteger('rating_count');
+            $table->float('rating');
+            $table->integer('rating_count');
             $table->longText('description');
-            $table->string('video_link');
+            $table->string('video_link')->nullable();
             $table->boolean('org_choice');
             $table->boolean('best_selling');
             $table->integer('est_shipping_time');
             $table->boolean('is_refurbished');
             $table->boolean('is_in_cart');
             $table->boolean('is_in_wishlist');
-            $table->string('meta_title');
-            $table->string('meta_description');
-            $table->string('meta_img');
+            $table->string('meta_title')->nullable();
+            $table->string('meta_description')->nullable();
+            $table->string('meta_img')->nullable();
             $table->timestamps();
         });
     }
