@@ -14,9 +14,6 @@ return new class extends Migration
         Schema::create('sellers', function (Blueprint $table) {
             $table->id();
             $table->string('seller_name');
-            $table->integer('seller_stock');
-            $table->integer('est_shipping_days');
-            $table->integer('selling_price');
             $table->timestamps();
         });
     }

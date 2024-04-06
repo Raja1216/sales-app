@@ -15,13 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('thumbnail_image');
-            $table->integer('mrp');
-            $table->float('rating');
+            $table->decimal('mrp', 10, 2);
+            $table->integer('rating');
             $table->integer('sales');
             $table->boolean('is_wholesale');
             $table->boolean('org_choice');
             $table->boolean('best_selling');
-            $table->integer('carbon_footprint')->nullable();
+            $table->decimal('carbon_footprint', 10, 2)->nullable();
+            $table->unsignedBigInteger('brand_id')->nullable();
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('set null');
             $table->timestamps();
         });
     }

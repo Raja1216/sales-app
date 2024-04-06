@@ -9,9 +9,9 @@ class Product extends Model
 {
     use HasFactory;
 
-    public function attributes()
+    public function brand()
     {
-        return $this->hasMany(Attribute::class);
+        return $this->belongsTo(Brand::class);
     }
 
     public function themes()
@@ -19,18 +19,21 @@ class Product extends Model
         return $this->belongsToMany(Theme::class);
     }
 
-    public function brand()
+    public function attributes()
     {
-        return $this->belongsTo(Brand::class);
+        return $this->belongsToMany(Attribute::class, 'product_attribute')->withPivot('value');
     }
 
     public function sellers()
     {
-        return $this->hasMany(Seller::class);
+        return $this->belongsToMany(Seller::class, 'product_sellers')
+            ->using(ProductSeller::class)
+            ->withPivot('seller_stock', 'est_shipping_days', 'selling_price');
     }
 
-    public function crossSelling()
+    public function crossSellings()
     {
-        return $this->belongsToMany(Product::class, 'cross_sellings', 'product_id', 'id');
+        return $this->belongsToMany(CrossSelling::class, 'product_cross_selling');
     }
+
 }

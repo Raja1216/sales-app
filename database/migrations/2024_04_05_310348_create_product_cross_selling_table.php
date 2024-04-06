@@ -12,11 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('product_cross_selling', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('cross_selling_id');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('cross_selling_id')->references('id')->on('cross_sellings')->onDelete('cascade');
+            $table->unique(['product_id', 'cross_selling_id']);
             $table->timestamps();
-
-            $table->primary(['product_id', 'cross_selling_id']);
         });
     }
 
