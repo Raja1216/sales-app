@@ -8,7 +8,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ProductThemeSeeder extends Seeder
+class ProductThemesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -21,7 +21,7 @@ class ProductThemeSeeder extends Seeder
 
         foreach ($products as $productId) {
             // Randomly assign themes to products
-            $numberOfThemes = rand(1, count($themes)); 
+            $numberOfThemes = rand(1, count($themes));
             $selectedThemes = array_rand($themes, $numberOfThemes);
 
             if (!is_array($selectedThemes)) {
@@ -30,7 +30,7 @@ class ProductThemeSeeder extends Seeder
 
             foreach ($selectedThemes as $themeIndex) {
                 $themeId = $themes[$themeIndex];
-                DB::table('product_theme')->insert([
+                DB::table('product_themes')->insert([
                     'product_id' => $productId,
                     'theme_id' => $themeId,
                     'created_at' => now(),

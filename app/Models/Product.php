@@ -9,6 +9,8 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['brand_id'];
+
     public function brand()
     {
         return $this->belongsTo(Brand::class);
@@ -16,7 +18,7 @@ class Product extends Model
 
     public function themes()
     {
-        return $this->belongsToMany(Theme::class);
+        return $this->belongsToMany(Theme::class,'product_themes');
     }
 
     public function attributes()

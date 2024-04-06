@@ -23,12 +23,12 @@ class DatabaseSeeder extends Seeder
             BrandSeeder::class,
             ThemeSeeder::class,
             ProductSeeder::class,
-            ProductThemeSeeder::class,
+            ProductThemesSeeder::class,
             AttributeSeeder::class,
             AttributeValueSeeder::class,
             ProductAttributeSeeder::class,
             SellerSeeder::class,
-            ProductSellerSeeder::class,
+            ProductSellersSeeder::class,
             CrossSellingSeeder::class,
             ProductCrossSellingSeeder::class
         ]);

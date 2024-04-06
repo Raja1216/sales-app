@@ -13,7 +13,7 @@ class AuthController extends Controller
     public function login(Request $request)
         {
             $validator = Validator::make($request->all(), [
-                'email' => 'required',
+                'email' => 'required|email',
                 'password' => 'required',
             ]);
 
@@ -30,6 +30,16 @@ class AuthController extends Controller
 
     public function register(Request $request)
         {
+
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'email' => 'required|email',
+                'password' => 'required',
+            ]);
+
+            if($validator->fails()){
+                return response()->json(['error' => $validator->errors()->first()], 401);
+            }
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
